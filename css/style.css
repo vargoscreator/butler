@@ -1271,6 +1271,7 @@ main.main{
     opacity: 0;
     transform: scale(0.5);
     transition: all .5s ease;
+    pointer-events: none;
 }
 .cases__item.active .cases__content-box{
     opacity: 1;
