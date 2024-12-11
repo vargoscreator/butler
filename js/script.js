@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const screenWidth = window.innerWidth;
         if (scrollPosition < 600 && screenWidth < 1000 && screenWidth > 767) {
             aboutMission.style.setProperty('opacity', '0', 'important');
-        } else if(scrollPosition > 1650){
+        } else if(scrollPosition > 1650 && screenWidth < 1000 && screenWidth > 767){
             aboutMission.style.setProperty('opacity', '0', 'important');
         } 
         else {
