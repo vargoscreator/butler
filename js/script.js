@@ -3,50 +3,57 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 500
     });
     let swiper;
-    function initSwiper() {
-        swiper = new Swiper(".trust__slider", {
-            loop: false,
-            slidesPerView: 2,
-            grid: {
-                rows: 2,
+function initSwiper() {
+    swiper = new Swiper(".trust__slider", {
+        loop: false,
+        slidesPerView: 2,
+        grid: {
+            rows: 2,
+        },
+        spaceBetween: 20,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".trust__slider-next",
+            prevEl: ".trust__slider-prev",
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
             },
-            spaceBetween: 20,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
+            1000: {
+                slidesPerView: 3,
+                spaceBetween: 21,
             },
-            navigation: {
-                nextEl: ".trust__slider-next",
-                prevEl: ".trust__slider-prev",
+            1280: {
+                slidesPerView: 4,
+                spaceBetween: 20,
             },
-            breakpoints: {
-                1000: {
-                    slidesPerView: 3,
-                    spaceBetween: 21,
-                },
-                1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                1501: {
-                    spaceBetween: 31,
-                }
-            },
-        });
-    }
+            1501: {
+                slidesPerView: 4,
+                spaceBetween: 31,
+            }
+        },
+    });
+}
 
-    if (window.innerWidth >= 768) {
+if (window.innerWidth >= 768) {
+    initSwiper();
+}
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 768) {
+        swiper.destroy(true, true);
+        swiper = null;
+    } else if (window.innerWidth >= 768) {
         initSwiper();
     }
+    
+});
 
-    window.addEventListener('resize', () => {
-        if (swiper && window.innerWidth < 768) {
-            swiper.destroy(true, true);
-            swiper = null;
-        } else if (!swiper && window.innerWidth >= 768) {
-            initSwiper();
-        }
-    });
 
 
 
