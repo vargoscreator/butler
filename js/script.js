@@ -3,56 +3,57 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 500
     });
     let swiper;
-function initSwiper() {
-    swiper = new Swiper(".trust__slider", {
-        loop: false,
-        slidesPerView: 2,
-        grid: {
-            rows: 2,
-        },
-        spaceBetween: 20,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".trust__slider-next",
-            prevEl: ".trust__slider-prev",
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+    function initSwiper() {
+        swiper = new Swiper(".trust__slider", {
+            loop: false,
+            slidesPerView: 2,
+            grid: {
+                rows: 2,
             },
-            1000: {
-                slidesPerView: 3,
-                spaceBetween: 21,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
             },
-            1280: {
-                slidesPerView: 4,
-                spaceBetween: 20,
+            navigation: {
+                nextEl: ".trust__slider-next",
+                prevEl: ".trust__slider-prev",
             },
-            1501: {
-                slidesPerView: 4,
-                spaceBetween: 31,
-            }
-        },
-    });
-}
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1000: {
+                    slidesPerView: 3,
+                    spaceBetween: 21,
+                },
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                },
+                1501: {
+                    slidesPerView: 4,
+                    spaceBetween: 31,
+                }
+            },
+        });
+    }
 
-if (window.innerWidth >= 768) {
-    initSwiper();
-}
-
-window.addEventListener('resize', () => {
-    if (window.innerWidth < 768) {
-        swiper.destroy(true, true);
-        swiper = null;
-    } else if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 768) {
         initSwiper();
     }
-    
-});
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth < 768) {
+            swiper.destroy(true, true);
+            swiper = null;
+        } else if (window.innerWidth >= 768) {
+            initSwiper();
+            document.querySelector('body').classList.remove('no-scroll');
+        }
+        
+    });
 
 
 
@@ -106,9 +107,7 @@ window.addEventListener('resize', () => {
 
     const observer2 = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                entry.target.classList.remove('active');
-            } else {
+            if (entry.isIntersecting) {
                 entry.target.classList.add('active');
                 const textElement = document.querySelector('.cases__descr');
                 const text = textElement.textContent;
@@ -144,16 +143,29 @@ window.addEventListener('resize', () => {
     
     let activeInterval;
     let isClicked = false;
-
     document.querySelectorAll('.cases__item-btn').forEach(item => {
         item.addEventListener('click', function () {
+            const parentItem = item.closest('.cases__item');
+            if (isClicked && parentItem.classList.contains('active')) {
+                parentItem.classList.remove('active');
+                resetAll();
+                isClicked = false;
+                return;
+            }
             isClicked = true;
             handleInteraction(item, 'click');
+            if (window.innerWidth < 768) {
+                document.querySelector('body').classList.add('no-scroll');
+            }
         });
 
         item.addEventListener('mouseover', function () {
-            if (!isClicked) {
-                handleInteraction(item, 'mouseover');
+            if (window.innerWidth >= 768) {
+                const parentItem = item.closest('.cases__item');
+                if (!isClicked) {
+                    parentItem.classList.add('active');
+                    handleInteraction(item, 'mouseover');
+                }
             }
         });
 
@@ -164,30 +176,29 @@ window.addEventListener('resize', () => {
         });
     });
 
+    document.querySelectorAll('.cases__content-box > span').forEach(span => {
+        span.addEventListener('click', function () {
+            resetAll();
+            isClicked = false;
+            if (window.innerWidth < 768) {
+                document.querySelector('body').classList.remove('no-scroll');
+            }
+        });
+    });
+
     function handleInteraction(item, eventType) {
         const parentItem = item.closest('.cases__item');
-
-        if (eventType === 'click') {
-            if (parentItem.classList.contains('active')) {
-                parentItem.classList.remove('active');
-                resetAll();
-                isClicked = false;
-                return;
-            }
+        if (eventType === 'click' && parentItem.classList.contains('active')) {
+            return;
         }
-
         resetAll();
-
         parentItem.classList.add('active');
-
         const contentBox = parentItem.querySelector('.cases__content-box');
         const messages = parentItem.querySelectorAll('.cases__content-item');
         const messageCount = messages.length;
-
         setTimeout(() => {
             contentBox.querySelector('.cases__content-icon').style.opacity = 1;
         }, 1000);
-
         let messageIndex = 0;
         activeInterval = setInterval(() => {
             if (messageIndex < messageCount) {
@@ -198,7 +209,6 @@ window.addEventListener('resize', () => {
             }
         }, 500);
     }
-
     function resetAll() {
         clearInterval(activeInterval);
         document.querySelectorAll('.cases__item').forEach(element => {
@@ -209,6 +219,8 @@ window.addEventListener('resize', () => {
             element.classList.remove('show');
         });
     }
+
+    
 
 
     window.addEventListener('scroll', function() {

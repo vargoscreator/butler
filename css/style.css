@@ -1088,20 +1088,23 @@ main.main{
     background-position: center;
     background-repeat: no-repeat;
 }
-.cases__image{
+.cases__image {
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(0);
     transition: all .2s ease;
     width: 100%;
     position: relative;
+    max-width: max-content;
+    margin: 0 auto;
 }
 .cases__image-content{
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    transform: scale(0);
+    z-index: 1;
 }
 .cases__image-content > img{
     width: 100%;
@@ -1112,11 +1115,38 @@ main.main{
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: -24.9%;
-    left: 7%;
+    top: -30.9%;
+    left: 4.8%;
+    opacity: 0;
+    animation: casesAnimateBird 2.2s forwards;
+    animation-delay: 1s;
+}
+@keyframes casesAnimateBird {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .cases__item{
     pointer-events: none;
+    opacity: 0;
+}
+@keyframes casesAnimateItem {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        pointer-events: all;
+        opacity: 1;
+    }
 }
 .cases__item.active{
     pointer-events: all;
@@ -1124,7 +1154,7 @@ main.main{
 .cases__item-btn {
     pointer-events: all;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     width: 19.336px;
     height: 19.336px;
     border-radius: 50%;
@@ -1189,6 +1219,10 @@ main.main{
     top: 8.3%;
     left: 35.7%;
 }
+.cases__item:nth-of-type(9) .cases__item-btn {
+    top: 33.6%;
+    right: 38.7%;
+}
 @keyframes expandCircles {
     0% {
         transform: translate(-50%, -50%) scale(0.7);
@@ -1202,7 +1236,7 @@ main.main{
         opacity: 0;
     }
 }
-.cases.active .cases__image{
+.cases.active .cases__image-content{
     animation: casesAnimateImage 2.2s forwards;
 }
 .cases.active .cases__content::before{
@@ -1272,6 +1306,7 @@ main.main{
     transform: scale(0.5);
     transition: all .5s ease;
     pointer-events: none;
+    z-index: 24;
 }
 .cases__item.active .cases__content-box{
     opacity: 1;
@@ -1344,6 +1379,10 @@ main.main{
     transition: opacity 0.5s, transform 0.5s;
 }
 @media (max-width: 1500px) {
+    .cases__bird {
+        top: -24.9%;
+        left: 4.8%;
+    }
     .cases{
         margin-top: 205px;
         padding-bottom: 124px;
@@ -1485,6 +1524,10 @@ main.main{
         height: 54px;
         background-size: 100%;
     }
+    .cases__bird {
+        top: -23.9%;
+        left: 7.8%;
+    }
 }
 @media (max-width: 999px) {
     .cases{
@@ -1505,6 +1548,7 @@ main.main{
         margin-bottom: 15px;
         width: 33px;
         height: 33px;
+        min-height: 33px;
         min-width: 33px;
         transform: translateX(40px);
     }
@@ -1555,7 +1599,20 @@ main.main{
         right: 0;
     }
 }
+@media (min-width: 768px) {
+    .cases.active .cases__item{
+        animation: casesAnimateItem 2.2s forwards;
+        animation-delay: 1s;
+    }
+    .cases__content-box > span{
+        display: none;
+    }
+}
 @media (max-width: 767px) {
+    .cases.active .cases__item{
+        opacity: 1;
+        pointer-events: all;
+    }
     .cases{
         overflow: hidden;
     }
@@ -1587,6 +1644,94 @@ main.main{
     .cases__item:nth-of-type(3) .cases__item-btn {
         bottom: 29.9%;
         left: 31.8%;
+    }
+    .cases__image-content{
+        transform: none;
+        z-index: 1;
+        opacity: 0;
+    }
+    @keyframes casesAnimateImage {
+        0%, 75% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .cases__content-box {
+        position: fixed;
+        inset: 0;
+        padding: 16px;
+        width: calc(100% - 26px);
+        max-width: 100%;
+        background: aliceblue;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        overflow: auto;
+        z-index: 5;
+    }
+    .cases__item.active .cases__content-box{
+        transform: translate(-50%, -50%);
+        pointer-events: all;        
+    }
+    .cases__content-block{
+        overflow: auto;
+        overscroll-behavior: contain;
+    }
+    .cases__content-box > span{
+        display: flex;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42' fill='none'%3E%3Crect width='29.2231' height='2.19173' rx='1.09587' transform='matrix(-0.707954 0.706259 -0.707953 -0.706259 31.8091 11.0938)' fill='%23E1DEDD'/%3E%3Crect width='29.2231' height='2.19173' rx='1.09587' transform='matrix(0.707953 0.706259 -0.707953 0.706259 11.1196 9.54688)' fill='%23E1DEDD'/%3E%3C/svg%3E");
+        width: 30px;
+        height: 30px;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .cases__content{
+        margin-top: 0;
+    }
+    .cases__title::after {
+        bottom: -10px;
+        width: 41px;
+        height: 2px;
+    }
+    .cases__content::after, .cases__content::before {
+        width: 28px;
+        height: 28px;
+    }
+    .cases__descr {
+        font-size: 10px;
+        left: 0;
+        max-width: 102px;
+        bottom: 36px;
+    }
+    @keyframes casesAnimate1 {
+        0%, 75% {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+        50%{
+            opacity: 1;
+        }
+        100% {
+            top: 14px;
+            left: 0;
+            transform: none;
+            opacity: 1;
+        }
+    }
+    .cases__image {
+        padding-top: 138px;
+    }
+    .cases__bird {
+        top: 11%;
+        left: 13%;
     }
 }
 
