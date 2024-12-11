@@ -1150,6 +1150,7 @@ main.main{
 }
 .cases__item.active{
     pointer-events: all;
+    z-index: 3;
 }
 .cases__item-btn {
     pointer-events: all;
