@@ -1,91 +1,79 @@
 document.addEventListener("DOMContentLoaded", function () {
     AOS.init({
-        duration: 500
+        duration: 700
     });
     let swiper;
-    function initSwiper() {
-        swiper = new Swiper(".trust__slider", {
-            loop: false,
-            slidesPerView: 2,
-            grid: {
-                rows: 2,
-            },
-            spaceBetween: 20,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".trust__slider-next",
-                prevEl: ".trust__slider-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                1000: {
-                    slidesPerView: 3,
-                    spaceBetween: 21,
-                },
-                1280: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-                1501: {
-                    slidesPerView: 4,
-                    spaceBetween: 31,
-                }
-            },
-        });
-    }
 
+    function initSwiper() {
+        if (!swiper) {
+            swiper = new Swiper(".trust__slider", {
+                loop: false,
+                slidesPerView: 2,
+                grid: {
+                    rows: 2,
+                },
+                spaceBetween: 20,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".trust__slider-next",
+                    prevEl: ".trust__slider-prev",
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                        grid: {
+                            rows: 2,
+                        },
+                    },
+                    1000: {
+                        slidesPerView: 3,
+                        spaceBetween: 21,
+                        grid: {
+                            rows: 2,
+                        },
+                    },
+                    1280: {
+                        slidesPerView: 4,
+                        spaceBetween: 20,
+                        grid: {
+                            rows: 2,
+                        },
+                    },
+                    1501: {
+                        slidesPerView: 4,
+                        spaceBetween: 31,
+                        grid: {
+                            rows: 2,
+                        },
+                    }
+                },
+            });
+        }
+    }
+    
+    function destroySwiper() {
+        if (swiper) {
+            swiper.destroy(true, true);
+            swiper = null;
+        }
+    }
     if (window.innerWidth >= 768) {
         initSwiper();
     }
-
+    
     window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
-            swiper.destroy(true, true);
-            swiper = null;
+            destroySwiper();
         } else if (window.innerWidth >= 768) {
             initSwiper();
             document.querySelector('body').classList.remove('no-scroll');
         }
-        
     });
-
-
-
-
-    const navLinks = document.querySelectorAll(".navigation a");
-    const sectionsConfig = [
-        { className: "about", threshold: 100 },
-        { className: "services", threshold: 300 },
-        { className: "cases", threshold: 300 }, 
-        { className: "trust", threshold: 500 },
-        { className: "contacts", threshold: 600 }, 
-    ];
-    function onScroll() {
-        let currentSection = null;
-        sectionsConfig.forEach((sectionConfig) => {
-            const section = document.querySelector(`.${sectionConfig.className}`);
-            const rect = section.getBoundingClientRect();
-            const visibleHeight = window.innerHeight;
-            if (rect.top <= visibleHeight - sectionConfig.threshold) {
-                currentSection = sectionConfig.className;
-            }
-        });
-        navLinks.forEach((link) => {
-            const sectionId = link.getAttribute("href").substring(1);
-            if (sectionId === currentSection) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
-        });
-    }
-    window.addEventListener("scroll", onScroll);
+    
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -145,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isClicked = false;
     document.querySelectorAll('.cases__item-btn').forEach(item => {
         item.addEventListener('click', function () {
+            event.stopPropagation();
             const parentItem = item.closest('.cases__item');
             if (isClicked && parentItem.classList.contains('active')) {
                 parentItem.classList.remove('active');
@@ -174,6 +163,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 resetAll();
             }
         });
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('.cases__item-btn') && !event.target.closest('.cases__item')) {
+            resetAll();
+            isClicked = false;
+            if (window.innerWidth < 768) {
+                document.querySelector('body').classList.remove('no-scroll');
+            }
+        }
     });
 
     document.querySelectorAll('.cases__content-box > span').forEach(span => {
@@ -264,4 +263,20 @@ headerMenuLinks.forEach(function(link) {
     link.addEventListener('click', function() {
         headerMenu.classList.remove('active');
     });
+});
+
+
+function toggleSliderVisibility() {
+    const sliderElement = document.querySelector(".trust__slider");
+    if (window.innerWidth < 768) {
+        sliderElement.classList.add("hide");
+    } else {
+        sliderElement.classList.remove("hide");
+    }
+}
+toggleSliderVisibility();
+window.addEventListener("resize", toggleSliderVisibility);
+document.querySelector(".trust__slider-more").addEventListener("click", function () {
+    const sliderElement = document.querySelector(".trust__slider");
+    sliderElement.classList.remove("hide");
 });
