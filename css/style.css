@@ -85,7 +85,7 @@ a{
 }
 html,body{
     font-family: 'OtoiwoGroteskWide', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 115%; 
@@ -94,7 +94,7 @@ html,body{
     color: #76B1E1;
     width: 100%;
     overflow-x: hidden;
-}
+}   
 .body{
     min-width: 320px;
 }
@@ -546,7 +546,7 @@ main.main{
     font-size: 96px;
     line-height: 115%;
     font-weight: 500;
-    letter-spacing: -1.92px;
+    letter-spacing: -1px;
     text-transform: uppercase;
 }
 .about__name .icon{
@@ -568,9 +568,8 @@ main.main{
     content: none;
 }
 .about__descr{
-    text-align: justify;
     margin-top: 30px;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 115%;
     max-width: 940px;
 }
@@ -753,9 +752,6 @@ main.main{
     left: 0;
     background: #76B1E1;
 }
-.services__descr{
-    text-align: justify;
-}
 .services__block{
     margin-top: 50px;
 }
@@ -830,9 +826,6 @@ main.main{
         left: 50%;
         transform: translateX(-50%);
     }
-    .services__descr{
-        text-align: justify;
-    }
     .services__block {
         margin-top: 0;
         max-width: 337px;
@@ -895,7 +888,6 @@ main.main{
 }
 .cases__descr{
     font-size: 16px;
-    text-align: justify;
     font-weight: 400;
     line-height: 115%;
     max-width: 194px;
@@ -1009,8 +1001,8 @@ main.main{
     pointer-events: all;
     position: absolute;
     z-index: 2;
-    width: 19.336px;
-    height: 19.336px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background-color: #fff;
     cursor: pointer;
@@ -1025,8 +1017,8 @@ main.main{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 19.336px;
-    height: 19.336px;
+    width: 8px;
+    height: 8px;
     background-color: #fff;
     animation: expandCircles 4s infinite;
     border-radius: 50%;
@@ -1041,42 +1033,82 @@ main.main{
     width: 20px;
     height: 20px;
 }
+
+
 .cases__item:nth-of-type(1) .cases__item-btn {
-    top: 32.9%;
-    left: 19.6%;
+    bottom: -5%;
+    left: 53%;
 }
 .cases__item:nth-of-type(2) .cases__item-btn {
-    top: 21.5%;
-    left: 23.3%;
+    top: 20.8%;
+    left: 42.7%;
 }
 .cases__item:nth-of-type(3) .cases__item-btn {
-    bottom: 31.2%;
-    left: 33.6%;
+    top: 24.2%;
+    left: 49.2%;
 }
 .cases__item:nth-of-type(4) .cases__item-btn {
-    bottom: 45.4%;
-    left: 48.1%;
+    top: 35.6%;
+    left: 47.7%;
 }
 .cases__item:nth-of-type(5) .cases__item-btn {
-    bottom: 43.8%;
-    left: 54.1%;
+    top: 33%;
+    left: 54.4%;
 }
 .cases__item:nth-of-type(6) .cases__item-btn {
-    top: 29.3%;
-    left: 53.7%;
+    top: 31%;
+    left: 46.9%;
 }
 .cases__item:nth-of-type(7) .cases__item-btn {
-    bottom: 19.3%;
-    right: 21.4%;
+    top: 37.7%;
+    left: 48.7%;
 }
 .cases__item:nth-of-type(8) .cases__item-btn {
-    top: 8.3%;
-    left: 35.7%;
+    top: 77%;
+    left: 37.1%;
 }
 .cases__item:nth-of-type(9) .cases__item-btn {
-    top: 33.6%;
-    right: 38.7%;
+    top: 30.9%;
+    left: 48.4%;
 }
+.cases__item:nth-of-type(10) .cases__item-btn {
+    top: 65.2%;
+    left: 55.7%;
+}
+.cases__item:nth-of-type(11) .cases__item-btn {
+    top: 63%;
+    left: 64.3%;
+}
+.cases__item:nth-of-type(12) .cases__item-btn {
+    bottom: 14%;
+    right: 16.8%;
+}
+.cases__item:nth-of-type(13) .cases__item-btn {
+    top: 9%;
+    left: 51%;
+}
+.cases__item:nth-of-type(14) .cases__item-btn {
+    top: 38.6%;
+    left: 50.2%;
+}
+.cases__item:nth-of-type(15) .cases__item-btn {
+    top: 39%;
+    left: 29.4%;
+}
+.cases__item:nth-of-type(16) .cases__item-btn {
+    top: 39%;
+    left: 55%;
+}
+.cases__item:nth-of-type(17) .cases__item-btn {
+    top: 10%;
+    left: 10%;
+}
+.cases__item:nth-of-type(17) .cases__item-btn {
+    top: 53%;
+    left: 41%;
+}
+
+
 @keyframes expandCircles {
     0% {
         transform: translate(-50%, -50%) scale(0.7);
@@ -1143,7 +1175,7 @@ main.main{
 }
 .cases__content-box {
     position: absolute;
-    top: -103px;
+    top: -13px;
     right: 270px;
     z-index: 11;
     width: 100%;
@@ -1160,42 +1192,22 @@ main.main{
     opacity: 1;
     transform: scale(1);
 }
-.cases__content-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 67px;
-    height: 67px;
-    min-width: 67px;
-    background-color: #FFF;
-    border-radius: 50%;
-    margin: 0 auto 38px;
-}
 .cases__content-item{
     width: 100%;
-    max-width: 337px;
+    max-width: 293px;
     margin-left: auto;
-    color: #FFF;
-    text-align: justify;
-    font-size: 14px;
+    color: #1E364A;
+    font-family: 'OtoiwoGroteskWide', sans-serif;
+    font-size: 10px;
+    font-style: normal;
     font-weight: 400;
-    line-height: 115%;
+    line-height: normal;
     letter-spacing: -0.7px;
     border-radius: 20px;
-    border-radius: 20px;
-    border: 1px solid #FFF;
-    padding: 12px 15px;
-    background: linear-gradient(180deg, #1E364A 0%, #223A4F 100%);
-}
-.cases__content-item:nth-of-type(2n){
-    margin-left: 0;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 23px;
-    background: #FFF;
-    color: #000;
-}
-.cases__content-item {
+    border: 1px solid #1E364A;
+    padding: 9px 23px;
+    background: #F7F1ED;
+
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
@@ -1216,8 +1228,8 @@ main.main{
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -36px;
+    right: -31px;
     z-index: 2;
     cursor: pointer;
     pointer-events: all;
@@ -1234,10 +1246,6 @@ main.main{
         margin-top: 205px;
         padding-bottom: 124px;
     }
-    .cases__item-btn{
-        width: 15px;
-        height: 15px;
-    }
     .cases__bird img {
         width: 76%;
     }
@@ -1246,12 +1254,8 @@ main.main{
         top: -113px;
         right: 130px;
     }
-    .cases__content-item{
-        max-width: 317px;
-    }
     .cases__content-item:nth-of-type(2n){
-        margin-top: 16px;
-        margin-bottom: 6px;
+        margin-top: 4px;
     }
     .cases__content::after,
     .cases__content::before{
@@ -1316,38 +1320,13 @@ main.main{
         width: 7px;
         height: 7px;
     }
-    .cases__item:nth-of-type(1) .cases__item-btn {
-        top: 33.6%;
-        left: 19.6%;
-    }
-    .cases__item:nth-of-type(2) .cases__item-btn {
-        top: 20.5%;
-        left: 24.2%;
-    }
-    .cases__item:nth-of-type(8) .cases__item-btn {
-        top: 10.3%;
-        left: 38.4%;
-    }
-    .cases__item:nth-of-type(3) .cases__item-btn {
-        bottom: 29.9%;
-        left: 34.8%;
-    }
-    .cases__item:nth-of-type(7) .cases__item-btn {
-        bottom: 19.3%;
-        right: 20%;
-    }
-    .cases__content-item {
-        max-width: 297px;
-        padding: 10px 13px;
+    .cases__content-box > span{
+        right: 10px;
     }
     .cases__content-box {
         max-width: 381px;
         top: -103px;
         right: 0;
-    }
-    .cases__content-item:nth-of-type(2n) {
-        margin-top: 3px;
-        margin-bottom: 3px;
     }
     .cases__content-icon{
         margin-bottom: 34px;
@@ -1398,8 +1377,6 @@ main.main{
         max-height: 16px;
     }
     .cases__content-item {
-        max-width: 244px;
-        padding: 10px 11px;
         font-size: 12px;
     }
     .cases__bird {
@@ -1454,21 +1431,63 @@ main.main{
         max-width: none;
     }
     .cases__item:nth-of-type(1) .cases__item-btn {
-        top: 33.4%;
-        left: 15.6%;
+        bottom: 4%;
+        left: 53%;
     }
     .cases__item:nth-of-type(2) .cases__item-btn {
-        top: 20.5%;
-        left: 19.4%;
+        top: 20.6%;
+        left: 41.4%;
+    }
+    .cases__item:nth-of-type(4) .cases__item-btn {
+        top: 35.4%;
+        left: 47.1%;
+    }
+    .cases__item:nth-of-type(5) .cases__item-btn {
+        top: 33%;
+        left: 55.3%;
+    }
+    .cases__item:nth-of-type(6) .cases__item-btn {
+        top: 30.5%;
+        left: 46.3%;
+    }
+    .cases__item:nth-of-type(7) .cases__item-btn {
+        top: 37.9%;
+        left: 48.5%;
     }
     .cases__item:nth-of-type(8) .cases__item-btn {
-        top: 10.3%;
-        left: 34.4%;
+        left: 33.1%;
     }
-    .cases__item:nth-of-type(3) .cases__item-btn {
-        bottom: 29.9%;
-        left: 31.8%;
+    .cases__item:nth-of-type(9) .cases__item-btn {
+        top: 30.4%;
+        left: 48.3%;
     }
+    .cases__item:nth-of-type(10) .cases__item-btn {
+        top: 64.9%;
+        left: 56.6%;
+    }
+    .cases__item:nth-of-type(11) .cases__item-btn {
+        top: 62.2%;
+        left: 67%;
+    }
+    .cases__item:nth-of-type(12) .cases__item-btn {
+        bottom: 14.3%;
+        right: 11.3%;
+    }
+    .cases__item:nth-of-type(14) .cases__item-btn {
+        top: 38.6%;
+        left: 50.4%;
+    }
+    .cases__item:nth-of-type(15) .cases__item-btn {
+        left: 25.4%;
+    }
+    .cases__item:nth-of-type(16) .cases__item-btn {
+        top: 39.2%;
+        left: 56%;
+    }
+    .cases__item:nth-of-type(17) .cases__item-btn {
+        left: 40.4%;
+    }
+
     .cases__image-content{
         z-index: 1;
         opacity: 0;
@@ -1715,6 +1734,9 @@ main.main{
     max-width: max-content;
     max-height: 100%;
 }
+.swiper-button-lock{
+    display: none !important;
+}
 .swiper-pagination{
     position: initial;
     display: flex;
@@ -1923,6 +1945,8 @@ main.main{
 }
 .contacts__links{
     margin-top: 37px;
+    display: flex;
+    flex-direction: column;
 }
 .contacts__links-item{
     color: #76B1E1;
@@ -1936,6 +1960,7 @@ main.main{
     text-underline-offset: auto;
     text-underline-position: from-font;
     transition: all .2s ease;
+    max-width: max-content;
 }
 .contacts__links-item:hover{
     color: #E09363;
