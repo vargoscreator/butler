@@ -195,9 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const contentBox = parentItem.querySelector('.cases__content-box');
         const messages = parentItem.querySelectorAll('.cases__content-item');
         const messageCount = messages.length;
-        setTimeout(() => {
-            contentBox.querySelector('.cases__content-icon').style.opacity = 1;
-        }, 1000);
         let messageIndex = 0;
         activeInterval = setInterval(() => {
             if (messageIndex < messageCount) {
@@ -206,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 clearInterval(activeInterval);
             }
-        }, 500);
+        }, 150);
     }
     function resetAll() {
         clearInterval(activeInterval);
